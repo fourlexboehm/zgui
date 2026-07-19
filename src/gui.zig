@@ -1194,7 +1194,7 @@ pub const Style = extern struct {
     curve_tessellation_tol: f32,
     circle_tessellation_max_error: f32,
 
-    colors: [@typeInfo(StyleCol).@"enum".names.len][4]f32,
+    colors: [@typeInfo(StyleCol).@"enum".field_names.len][4]f32,
 
     hover_stationary_delay: f32,
     hover_delay_short: f32,
@@ -2014,11 +2014,11 @@ pub fn comboFromEnum(
 
     const FieldNameIndex = std.meta.Tuple(&.{ []const u8, i32 });
     comptime var item_names: [:0]const u8 = "";
-    comptime var field_name_to_index_list: [enum_type_info.names.len]FieldNameIndex = undefined;
-    comptime var index_to_enum: [enum_type_info.names.len]EnumType = undefined;
+    comptime var field_name_to_index_list: [enum_type_info.field_names.len]FieldNameIndex = undefined;
+    comptime var index_to_enum: [enum_type_info.field_names.len]EnumType = undefined;
 
     comptime {
-        for (enum_type_info.names, enum_type_info.values, 0..) |name, value, i| {
+        for (enum_type_info.field_names, enum_type_info.field_values, 0..) |name, value, i| {
             item_names = item_names ++ name ++ "\x00";
             const e: EnumType = @enumFromInt(value);
             field_name_to_index_list[i] = .{ name, @intCast(i) };
