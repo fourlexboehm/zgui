@@ -1194,7 +1194,7 @@ pub const Style = extern struct {
     curve_tessellation_tol: f32,
     circle_tessellation_max_error: f32,
 
-    colors: [@typeInfo(StyleCol).@"enum".fields.len][4]f32,
+    colors: [@typeInfo(StyleCol).@"enum".names.len][4]f32,
 
     hover_stationary_delay: f32,
     hover_delay_short: f32,
@@ -3758,7 +3758,7 @@ pub fn format(comptime fmt: []const u8, args: anytype) []const u8 {
 pub fn formatZ(comptime fmt: []const u8, args: anytype) [:0]const u8 {
     const len = std.fmt.count(fmt ++ "\x00", args);
     if (len > temp_buffer.?.items.len) temp_buffer.?.resize(mem_allocator.?, @intCast(len + 64)) catch unreachable;
-    return std.fmt.bufPrintZ(temp_buffer.?.items, fmt, args) catch unreachable;
+    return std.fmt.bufPrintSentinel(temp_buffer.?.items, fmt, args, 0) catch unreachable;
 }
 //--------------------------------------------------------------------------------------------------
 pub fn typeToDataTypeEnum(comptime T: type) DataType {
