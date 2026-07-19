@@ -18,8 +18,8 @@
             .lazy = true,
         },
         .zglfw = .{
-            .url = "https://github.com/zig-gamedev/zglfw/archive/0dd29d8073487c9fe1e45e6b729b3aac271d5a71.tar.gz",
-            .hash = "zglfw-0.10.0-dev-zgVDNIG4IQBWN_sfMD-xfC9bJS2hbBN2W7jNlDLovcdC",
+            .url = "git+https://github.com/fourlexboehm/zglfw#7bffbdb979d2510043a222c98eaccbd5831665dc",
+            .hash = "zglfw-0.10.0-dev-zgVDNGO6IQB0255Zpm26_egB39T8E4n_Gt7IsL9eHIEp",
             .lazy = true,
         },
         .zgpu = .{
